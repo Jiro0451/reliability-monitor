@@ -1,0 +1,20 @@
+[
+  {
+    "name": "Payment Gateway",
+    "url": "http://payment-api:8080/health",
+    "expected_version": "3.1.5",
+    "group": "production"
+  },
+  {
+    "name": "User Profile Service",
+    "url": "http://profile-service/status",
+    "expected_version": null,
+    "group": "staging"
+  },
+  {
+    "name": "Legacy Reporting Tool",
+    "url": "http://legacy-tool/v1",
+    "expected_version": "1.0.0-beta",
+    "group": "dev"
+  }
+]

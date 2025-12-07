@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  monitor:
+    # Build the image from the Dockerfile in the current directory
+    build: .
+
+    # Map the container port 8000 to the host port 8000
+    ports:
+      - "8000:8000"
+
+    # Environment variables for configuration (Senior-level choice)
+    environment:
+      # Sets the interval for the checker loop (e.g., check every 15 seconds)
+      MONITOR_INTERVAL_SECONDS: 15
+      # Sets the file path (though we fixed this with pathlib, this is cleaner)
+      CONFIG_FILE_PATH: services.json
+
+    # Mounts a volume to persist data (if you switch to SQLite later)
+    # volumes:
+    #   - monitor_data:/app/data
+
+    # Restart policy for resilience (Operational thinking)
+    restart: always
+
+# Define volumes (if used)
+# volumes:
+#   monitor_data:
