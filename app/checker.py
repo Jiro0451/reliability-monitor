@@ -96,6 +96,13 @@ def start_checker_loop(configs: List[ServiceConfig], interval_seconds: int = 60)
                 # Core Requirement 3: Store result in our in-memory cache
                 LATEST_RESULTS[config.name] = result
 
+                if not result.version_match:
+                    logger.warning(
+                        f"⚠️ VERSION DRIFT ALERT: {config.name} expected version "
+                        f"{config.expected_version} but found {result.version_found}. "
+                        f"Check deployment consistency."
+                    )
+
                 logger.info(
                     f"Checked {config.name}: Status={result.status_code}, Latency={result.latency_ms}ms, "
                     f"Available={result.is_available}, VersionMatch={result.version_match}"
